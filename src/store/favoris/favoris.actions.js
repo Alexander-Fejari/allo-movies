@@ -17,58 +17,58 @@ export const requestFavoris = () => ({
   type: REQUEST_FAVORIS,
 });
 
-export const fetchFavorisSuccess = (favoris) => ({
+export const fetchFavorisSuccess = favoris => ({
   type: FETCH_FAVORIS_SUCCESS,
   favoris,
 });
 
-export const fetchFavorisError = (error) => ({
+export const fetchFavorisError = error => ({
   type: FETCH_FAVORIS_ERROR,
   error,
 });
 
-export const fetchFavoris = () => (dispatch) => {
+export const fetchFavoris = () => dispatch => {
   dispatch(requestFavoris());
   return apiFirebaseRequest.fetchFavoris().then(
-    (favoris) => dispatch(fetchFavorisSuccess(favoris)),
-    (error) => dispatch(fetchFavorisError(error))
+    favoris => dispatch(fetchFavorisSuccess(favoris)),
+    error => dispatch(fetchFavorisError(error))
   );
 };
 
-export const addFavoriSuccess = (favoris) => ({
+export const addFavoriSuccess = favoris => ({
   type: ADD_FAVORI_SUCCESS,
   favoris,
 });
 
-export const addFavoriError = (error) => ({
+export const addFavoriError = error => ({
   type: ADD_FAVORI_ERROR,
   error,
 });
 
-export const tryAddFavori = (movie) => (disptach, getState) => {
+export const tryAddFavori = movie => (disptach, getState) => {
   const favoris = [...getState().favoris.data, movie];
   return apiFirebaseRequest.saveFavoris(favoris).then(
     () => disptach(addFavoriSuccess(favoris)),
-    (error) => disptach(addFavoriError(error))
+    error => disptach(addFavoriError(error))
   );
 };
 
-export const removeFavoriSuccess = (favoris) => ({
+export const removeFavoriSuccess = favoris => ({
   type: REMOVE_FAVORI_SUCCESS,
   favoris,
 });
 
-export const removeFavoriError = (error) => ({
+export const removeFavoriError = error => ({
   type: REMOVE_FAVORI_ERROR,
   error,
 });
 
-export const tryRemoveFavori = (title) => (disptach, getState) => {
+export const tryRemoveFavori = title => (disptach, getState) => {
   const favoris = [...getState().favoris.data];
-  const index = favoris.findIndex((f) => f.title === title);
+  const index = favoris.findIndex(f => f.title === title);
   favoris.splice(index, 1);
   return apiFirebaseRequest.saveFavoris(favoris).then(
     () => disptach(removeFavoriSuccess(favoris)),
-    (error) => disptach(removeFavoriError(error))
+    error => disptach(removeFavoriError(error))
   );
 };

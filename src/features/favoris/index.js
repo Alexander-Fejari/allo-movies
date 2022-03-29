@@ -8,17 +8,20 @@ import {
 } from '../../store/selectors';
 import { tryRemoveFavori } from '../../store/actions';
 
-const Favoris = (props) => {
+const Favoris = props => {
   return (
-    <div className='d-flex flex-row flex-fill pt-4 p-2'>
+    <div className='container-fluid'>
       {props.isLoading ? (
         <Loading />
       ) : (
-        <div className='d-flex flex-row flex-fill pt-4 p-2'>
-          <FavoriList
-            favoris={props.favoris}
-            removeFavori={props.tryRemoveFavori}
-          />
+        <div className='row'>
+          <div className='wrapper'>
+            <FavoriList
+              favoris={props.favoris}
+              movies={props.movie}
+              removeFavori={props.tryRemoveFavori}
+            />
+          </div>
         </div>
       )}
     </div>
@@ -26,7 +29,7 @@ const Favoris = (props) => {
 };
 
 export default connect(
-  (state) => ({
+  state => ({
     favoris: favorisListSelector(state),
     isLoading: favorisIsLoadingSelector(state),
   }),

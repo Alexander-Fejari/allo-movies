@@ -26,7 +26,15 @@ export const fetchMovies = (filter) => (dispatch) => {
     (movies) => dispatch(fetchMoviesSuccess(movies)),
     (error) => dispatch(fetchMoviesError(error))
   );
-}; 
+};
+
+export const discoverMovies = () => (dispatch) => {
+  dispatch(requestMovies());
+  return apiRequestMovie.discoverMovies().then(
+    (movies) => dispatch(fetchMoviesSuccess(movies)),
+    (error) => dispatch(fetchMoviesError(error))
+  );
+};
 
 export const setSelectedMovie = (index) => ({
   type: SET_SELECTED_MOVIE,

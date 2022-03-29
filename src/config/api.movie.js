@@ -1,6 +1,8 @@
 import * as axios from 'axios';
 
-export const apiMovie = axios.create();
+export const apiMovie = axios.create({
+  baseURL: 'https://api.themoviedb.org/4',
+});
 
 apiMovie.interceptors.request.use((req) => {
   req.headers['Authorization'] =
@@ -29,5 +31,14 @@ const ApiMovie = {
         moviesApi.filter((m) => m.poster_path).map(apiMovieMap)
       );
   },
+  discoverMovies: () => {
+    return apiMovie
+      .get('/discover/movie')
+      .then((response) => response.data.results)
+      .then((moviesApi) =>
+        moviesApi.filter((m) => m.poster_path).map(apiMovieMap)
+      );
+  },
 };
+
 export default ApiMovie;

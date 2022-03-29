@@ -15,22 +15,26 @@ import {
   setSelectedMovie,
 } from '../../store/actions';
 
-const Films = (props) => {
+const Films = props => {
   return (
     <>
       <SearchBar fetchMovies={props.fetchMovies} />
       {props.isLoading ? (
         <Loading />
       ) : (
-        <div className='d-flex flex-row flex-fill pt-4 p-2'>
-          <MovieList
-            movies={props.movies}
-            updateSelectedMovie={props.setSelectedMovie}
-            favoris={props.favorisListName}
-            removeFavori={props.tryRemoveFavori}
-            addFavori={props.tryAddFavori}
-          />
-          <MovieDetails movie={props.selectedMovie} />
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='wrapper'>
+              <MovieList
+                movies={props.movies}
+                updateSelectedMovie={props.setSelectedMovie}
+                favoris={props.favorisListName}
+                removeFavori={props.tryRemoveFavori}
+                addFavori={props.tryAddFavori}
+              />
+              <MovieDetails movie={props.selectedMovie} />
+            </div>
+          </div>
         </div>
       )}
     </>
@@ -38,7 +42,7 @@ const Films = (props) => {
 };
 
 export default connect(
-  (state) => ({
+  state => ({
     isLoading: moviesIsLoadingSelector(state),
     movies: moviesListSelector(state),
     favorisListName: favorisListNameSelector(state),

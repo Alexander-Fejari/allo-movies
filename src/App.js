@@ -1,6 +1,6 @@
 import React, { Component, lazy, Suspense } from 'react';
 import { Header } from './components';
-import { fetchFavoris } from './store/actions';
+import { fetchFavoris, discoverMovies } from './store/actions';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -15,6 +15,7 @@ const LazyFavoris = lazy(() =>
 class App extends Component {
   componentDidMount() {
     this.props.fetchFavoris();
+    this.props.discoverMovies();
   }
 
   render() {
@@ -36,5 +37,6 @@ class App extends Component {
 export default withRouter(
   connect(null, {
     fetchFavoris,
+    discoverMovies,
   })(App)
 );

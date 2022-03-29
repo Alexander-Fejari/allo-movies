@@ -1,0 +1,15 @@
+.container {
+  span {
+    color: lightslategray;
+    transition: color 0.2s ease-in;
+    &:hover {
+      color: lightgray;
+    }
+  }
+}
+
+@media (min-width: 1250px) {
+  .container {
+    display: none;
+  }
+}

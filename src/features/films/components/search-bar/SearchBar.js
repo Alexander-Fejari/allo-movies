@@ -12,11 +12,9 @@ export default class SearchBar extends Component {
         onSubmit={this.submit}
         initialValues={{ query: '', languag: 'fr-FR' }}>
         {({ handleSubmit, handleChange, handleBlur, isSubmitting }) => (
-          <form
-            className='d-flex flex-row justify-content-center p-2 m-2'
-            onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <input
-              className='w-50 form-control me-2'
+              className='form-control'
               name='query'
               type='search'
               placeholder='Search ...'
@@ -24,8 +22,7 @@ export default class SearchBar extends Component {
               onBlur={handleBlur}
             />
             <select
-              className='me-2 form-select'
-              style={{ width: '10%' }}
+              className='form-select'
               name='language'
               onChange={handleChange}
               onBlur={handleBlur}>

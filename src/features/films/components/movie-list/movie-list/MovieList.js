@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { MovieElement } from '..';
+import { MovieElement } from '../..';
 
 export default class MovieList extends Component {
   render() {
     return (
-      <div className='w-75 d-flex flex-row flex-wrap justify-content-center'>
+      <div className={'wrapper__movies col-lg-8'}>
         {this.props.movies.map((m, index) => (
           <MovieElement
             key={m.title + index}
